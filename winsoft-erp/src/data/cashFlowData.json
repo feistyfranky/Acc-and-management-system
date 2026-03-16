@@ -1,0 +1,217 @@
+{
+  "accountCategoryMapping": {
+    "operatingActivities": [
+      {
+        "accountCode": "4001",
+        "accountName": "Sales Revenue",
+        "glAccountId": "4001",
+        "type": "inflow",
+        "category": "Revenue"
+      },
+      {
+        "accountCode": "4002",
+        "accountName": "Design Services Revenue",
+        "glAccountId": "4002",
+        "type": "inflow",
+        "category": "Revenue"
+      },
+      {
+        "accountCode": "4003",
+        "accountName": "Consulting Revenue",
+        "glAccountId": "4003",
+        "type": "inflow",
+        "category": "Revenue"
+      },
+      {
+        "accountCode": "5001",
+        "accountName": "Cost of Printing Services",
+        "glAccountId": "5001",
+        "type": "outflow",
+        "category": "Operating Expenses"
+      },
+      {
+        "accountCode": "5002",
+        "accountName": "Salaries & Wages",
+        "glAccountId": "5002",
+        "type": "outflow",
+        "category": "Operating Expenses"
+      },
+      {
+        "accountCode": "5003",
+        "accountName": "Electricity Expense",
+        "glAccountId": "5003",
+        "type": "outflow",
+        "category": "Operating Expenses"
+      },
+      {
+        "accountCode": "5004",
+        "accountName": "Maintenance Expense",
+        "glAccountId": "5004",
+        "type": "outflow",
+        "category": "Operating Expenses"
+      },
+      {
+        "accountCode": "1002",
+        "accountName": "Accounts Receivable",
+        "glAccountId": "1002",
+        "type": "adjustment",
+        "category": "Working Capital"
+      },
+      {
+        "accountCode": "2001",
+        "accountName": "Accounts Payable",
+        "glAccountId": "2001",
+        "type": "adjustment",
+        "category": "Working Capital"
+      },
+      {
+        "accountCode": "1004",
+        "accountName": "Inventory - Paper",
+        "glAccountId": "1004",
+        "type": "adjustment",
+        "category": "Working Capital"
+      },
+      {
+        "accountCode": "1005",
+        "accountName": "Inventory - Ink",
+        "glAccountId": "1005",
+        "type": "adjustment",
+        "category": "Working Capital"
+      }
+    ],
+    "investingActivities": [
+      {
+        "accountCode": "1006",
+        "accountName": "Equipment",
+        "glAccountId": "1006",
+        "type": "outflow",
+        "category": "Fixed Assets"
+      },
+      {
+        "accountCode": "1007",
+        "accountName": "Accumulated Depreciation",
+        "glAccountId": "1007",
+        "type": "inflow",
+        "category": "Depreciation"
+      }
+    ],
+    "financingActivities": [
+      {
+        "accountCode": "2002",
+        "accountName": "Bank Loan",
+        "glAccountId": "2002",
+        "type": "inflow",
+        "category": "Borrowings"
+      },
+      {
+        "accountCode": "3001",
+        "accountName": "Owner Capital",
+        "glAccountId": "3001",
+        "type": "inflow",
+        "category": "Equity"
+      },
+      {
+        "accountCode": "3002",
+        "accountName": "Retained Earnings",
+        "glAccountId": "3002",
+        "type": "inflow",
+        "category": "Equity"
+      }
+    ]
+  },
+  "cashFlowPeriods": [
+    {
+      "id": "CF-2024-01",
+      "period": "January 2024",
+      "startDate": "2024-01-01",
+      "endDate": "2024-01-31",
+      "operatingActivities": {
+        "revenue": 5500,
+        "operatingExpenses": -5200,
+        "workingCapitalChanges": {
+          "accountsReceivableDecrease": -3500,
+          "accountsPayableIncrease": 2500,
+          "inventoryDecrease": 1200
+        },
+        "netOperatingCashFlow": 500
+      },
+      "investingActivities": {
+        "equipmentPurchases": 0,
+        "depreciation": 100,
+        "netInvestingCashFlow": 100
+      },
+      "financingActivities": {
+        "loanProceeds": 0,
+        "capitalContribution": 0,
+        "netFinancingCashFlow": 0
+      },
+      "netCashFlow": 600,
+      "beginningCashBalance": 14400,
+      "endingCashBalance": 15000
+    },
+    {
+      "id": "CF-2024-02",
+      "period": "February 2024",
+      "startDate": "2024-02-01",
+      "endDate": "2024-02-29",
+      "operatingActivities": {
+        "revenue": 4200,
+        "operatingExpenses": -3800,
+        "workingCapitalChanges": {
+          "accountsReceivableDecrease": 0,
+          "accountsPayableIncrease": 800,
+          "inventoryDecrease": 300
+        },
+        "netOperatingCashFlow": 1500
+      },
+      "investingActivities": {
+        "equipmentPurchases": 0,
+        "depreciation": 100,
+        "netInvestingCashFlow": 100
+      },
+      "financingActivities": {
+        "loanProceeds": 0,
+        "capitalContribution": 0,
+        "netFinancingCashFlow": 0
+      },
+      "netCashFlow": 1600,
+      "beginningCashBalance": 15000,
+      "endingCashBalance": 16600
+    },
+    {
+      "id": "CF-2024-03",
+      "period": "March 2024",
+      "startDate": "2024-03-01",
+      "endDate": "2024-03-31",
+      "operatingActivities": {
+        "revenue": 5800,
+        "operatingExpenses": -5100,
+        "workingCapitalChanges": {
+          "accountsReceivableDecrease": 2000,
+          "accountsPayableIncrease": 1200,
+          "inventoryDecrease": 500
+        },
+        "netOperatingCashFlow": 4400
+      },
+      "investingActivities": {
+        "equipmentPurchases": -2000,
+        "depreciation": 100,
+        "netInvestingCashFlow": -1900
+      },
+      "financingActivities": {
+        "loanProceeds": 0,
+        "capitalContribution": 0,
+        "netFinancingCashFlow": 0
+      },
+      "netCashFlow": 2500,
+      "beginningCashBalance": 16600,
+      "endingCashBalance": 19100
+    }
+  ],
+  "cashFlowMetrics": {
+    "operatingCashFlowMargin": 0.15,
+    "freeCashFlow": 2600,
+    "cashConversionCycle": 45,
+    "operatingCashFlowTrend": "positive"
+  }
+}

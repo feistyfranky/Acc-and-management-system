@@ -1,0 +1,257 @@
+{
+  "accounts": [
+    {
+      "id": "1001",
+      "name": "Cash",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Cash in hand and bank deposits",
+      "balance": 50000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-15"
+    },
+    {
+      "id": "1002",
+      "name": "Bank Account - Main",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Primary business bank account",
+      "balance": 250000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-15"
+    },
+    {
+      "id": "1010",
+      "name": "Accounts Receivable",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Money owed by customers",
+      "balance": 125000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-02-01"
+    },
+    {
+      "id": "1020",
+      "name": "Inventory - Paper",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Paper stock inventory",
+      "balance": 180000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-20"
+    },
+    {
+      "id": "1021",
+      "name": "Inventory - Ink",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Ink and toner inventory",
+      "balance": 45000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-20"
+    },
+    {
+      "id": "1022",
+      "name": "Inventory - Plates",
+      "category": "Asset",
+      "subcategory": "Current Asset",
+      "description": "Printing plates inventory",
+      "balance": 32000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-20"
+    },
+    {
+      "id": "1030",
+      "name": "Equipment",
+      "category": "Asset",
+      "subcategory": "Fixed Asset",
+      "description": "Printing machinery and equipment",
+      "balance": 800000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-12-01"
+    },
+    {
+      "id": "1031",
+      "name": "Accumulated Depreciation - Equipment",
+      "category": "Asset",
+      "subcategory": "Contra Asset",
+      "description": "Accumulated depreciation on equipment",
+      "balance": -80000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-12-01"
+    },
+    {
+      "id": "2001",
+      "name": "Accounts Payable",
+      "category": "Liability",
+      "subcategory": "Current Liability",
+      "description": "Amounts owed to suppliers",
+      "balance": 95000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-15"
+    },
+    {
+      "id": "2010",
+      "name": "Short-term Loan",
+      "category": "Liability",
+      "subcategory": "Current Liability",
+      "description": "Bank loan due within 12 months",
+      "balance": 50000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-06-15"
+    },
+    {
+      "id": "2020",
+      "name": "Long-term Loan",
+      "category": "Liability",
+      "subcategory": "Long-term Liability",
+      "description": "Bank loan due after 12 months",
+      "balance": 300000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-01-15"
+    },
+    {
+      "id": "2030",
+      "name": "Accrued Expenses",
+      "category": "Liability",
+      "subcategory": "Current Liability",
+      "description": "Expenses accrued but not yet paid",
+      "balance": 15000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-02-01"
+    },
+    {
+      "id": "3001",
+      "name": "Capital Stock",
+      "category": "Equity",
+      "subcategory": "Owner's Capital",
+      "description": "Owner's initial investment",
+      "balance": 500000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-01-01"
+    },
+    {
+      "id": "3010",
+      "name": "Retained Earnings",
+      "category": "Equity",
+      "subcategory": "Retained Earnings",
+      "description": "Accumulated profits retained in business",
+      "balance": 287500.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2024-01-01"
+    },
+    {
+      "id": "4001",
+      "name": "Sales Revenue",
+      "category": "Income",
+      "subcategory": "Operating Income",
+      "description": "Revenue from printing services",
+      "balance": 450000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "4002",
+      "name": "Service Income",
+      "category": "Income",
+      "subcategory": "Operating Income",
+      "description": "Revenue from consulting and services",
+      "balance": 75000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "4010",
+      "name": "Other Income",
+      "category": "Income",
+      "subcategory": "Non-operating Income",
+      "description": "Interest income and other non-operating income",
+      "balance": 5000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5001",
+      "name": "Cost of Goods Sold",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Direct costs of materials and labor",
+      "balance": 200000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5010",
+      "name": "Salary & Wages",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Employee salaries and wages",
+      "balance": 120000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5020",
+      "name": "Rent Expense",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Rent for office and warehouse space",
+      "balance": 24000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5030",
+      "name": "Utilities",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Electricity, water, and internet",
+      "balance": 8000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5040",
+      "name": "Marketing & Advertising",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Marketing and advertising expenses",
+      "balance": 15000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    },
+    {
+      "id": "5050",
+      "name": "Depreciation Expense",
+      "category": "Expense",
+      "subcategory": "Operating Expense",
+      "description": "Depreciation of equipment and assets",
+      "balance": 10000.00,
+      "currency": "GHS",
+      "status": "Active",
+      "createdDate": "2025-01-01"
+    }
+  ]
+}

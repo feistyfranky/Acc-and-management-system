@@ -1,0 +1,237 @@
+{
+  "bankAccounts": [
+    {
+      "id": "BA-001",
+      "accountName": "GCB Bank - Main Account",
+      "accountNumber": "123456789",
+      "currency": "GHS",
+      "glAccountId": "1003",
+      "bank": "GCB Bank",
+      "status": "Active",
+      "lastReconciled": "2024-01-31",
+      "balance": 12000
+    }
+  ],
+  "bankTransactions": [
+    {
+      "id": "BT-001",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-08",
+      "description": "DEBIT - Check #1001",
+      "amount": 2500,
+      "type": "debit",
+      "reference": "CHQ-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-002",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-10",
+      "description": "CREDIT - Customer Deposit ABC Corp",
+      "amount": 3500,
+      "type": "credit",
+      "reference": "DEP-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-003",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-15",
+      "description": "DEBIT - Salary Payment",
+      "amount": 3500,
+      "type": "debit",
+      "reference": "CHQ-002",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-004",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-20",
+      "description": "CREDIT - Bank Transfer In",
+      "amount": 12000,
+      "type": "credit",
+      "reference": "TRN-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-005",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-22",
+      "description": "DEBIT - Utility Bill Payment",
+      "amount": 1200,
+      "type": "debit",
+      "reference": "BIL-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-006",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-25",
+      "description": "CREDIT - Interest Received",
+      "amount": 50,
+      "type": "credit",
+      "reference": "INT-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-007",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-26",
+      "description": "DEBIT - Bank Charges",
+      "amount": 25,
+      "type": "debit",
+      "reference": "FEE-001",
+      "status": "cleared"
+    },
+    {
+      "id": "BT-008",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-28",
+      "description": "CREDIT - Customer Payment XYZ Ltd",
+      "amount": 2000,
+      "type": "credit",
+      "reference": "DEP-002",
+      "status": "cleared"
+    }
+  ],
+  "glBankTransactions": [
+    {
+      "id": "GLB-001",
+      "glLineId": "GL-015",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-20",
+      "description": "Bank deposit - Cash transferred to bank",
+      "debit": 12000,
+      "credit": 0,
+      "status": "Posted",
+      "reference": "JE-003"
+    },
+    {
+      "id": "GLB-002",
+      "glLineId": "GL-008",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-10",
+      "description": "Customer payment - ABC Corp INV-001",
+      "debit": 3500,
+      "credit": 0,
+      "status": "Posted",
+      "reference": "DEP-001"
+    },
+    {
+      "id": "GLB-003",
+      "glLineId": "GL-013",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-15",
+      "description": "Salary payment - January payroll",
+      "debit": 0,
+      "credit": 3500,
+      "status": "Posted",
+      "reference": "CHQ-001"
+    }
+  ],
+  "reconciliation": [
+    {
+      "id": "RECON-001",
+      "bankAccountId": "BA-001",
+      "bankTransactionId": "BT-002",
+      "glTransactionId": "GLB-002",
+      "date": "2024-01-10",
+      "amount": 3500,
+      "status": "matched",
+      "matchType": "automatic",
+      "matchedDate": "2024-01-10"
+    },
+    {
+      "id": "RECON-002",
+      "bankAccountId": "BA-001",
+      "bankTransactionId": "BT-003",
+      "glTransactionId": "GLB-003",
+      "date": "2024-01-15",
+      "amount": 3500,
+      "status": "matched",
+      "matchType": "automatic",
+      "matchedDate": "2024-01-15"
+    },
+    {
+      "id": "RECON-003",
+      "bankAccountId": "BA-001",
+      "bankTransactionId": "BT-004",
+      "glTransactionId": "GLB-001",
+      "date": "2024-01-20",
+      "amount": 12000,
+      "status": "matched",
+      "matchType": "automatic",
+      "matchedDate": "2024-01-20"
+    }
+  ],
+  "unmatchedBankTransactions": [
+    {
+      "id": "BT-001",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-08",
+      "description": "DEBIT - Check #1001",
+      "amount": 2500,
+      "type": "debit",
+      "reference": "CHQ-001",
+      "status": "cleared",
+      "reason": "GL entry not yet created"
+    },
+    {
+      "id": "BT-006",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-25",
+      "description": "CREDIT - Interest Received",
+      "amount": 50,
+      "type": "credit",
+      "reference": "INT-001",
+      "status": "cleared",
+      "reason": "Requires adjustment entry"
+    },
+    {
+      "id": "BT-007",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-26",
+      "description": "DEBIT - Bank Charges",
+      "amount": 25,
+      "type": "debit",
+      "reference": "FEE-001",
+      "status": "cleared",
+      "reason": "Requires adjustment entry"
+    },
+    {
+      "id": "BT-008",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-28",
+      "description": "CREDIT - Customer Payment XYZ Ltd",
+      "amount": 2000,
+      "type": "credit",
+      "reference": "DEP-002",
+      "status": "cleared",
+      "reason": "GL entry not yet created"
+    }
+  ],
+  "adjustmentEntries": [
+    {
+      "id": "ADJ-001",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-25",
+      "description": "Bank Interest - January",
+      "amount": 50,
+      "bankTransactionReference": "INT-001",
+      "status": "pending",
+      "glAccount": "1003",
+      "offsetAccount": "4003"
+    },
+    {
+      "id": "ADJ-002",
+      "bankAccountId": "BA-001",
+      "date": "2024-01-26",
+      "description": "Bank Service Charges - January",
+      "amount": 25,
+      "bankTransactionReference": "FEE-001",
+      "status": "pending",
+      "glAccount": "5004",
+      "offsetAccount": "1003"
+    }
+  ]
+}

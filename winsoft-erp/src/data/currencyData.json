@@ -1,0 +1,68 @@
+{
+  "baseCurrency": {
+    "code": "GHS",
+    "name": "Ghana Cedis",
+    "symbol": "₵",
+    "country": "Ghana"
+  },
+  "supportedCurrencies": [
+    {
+      "code": "GHS",
+      "name": "Ghana Cedis",
+      "symbol": "₵",
+      "country": "Ghana",
+      "rateToBase": 1.0,
+      "isBase": true
+    },
+    {
+      "code": "USD",
+      "name": "US Dollar",
+      "symbol": "$",
+      "country": "United States",
+      "rateToBase": 12.45,
+      "lastUpdated": "2026-03-09",
+      "isBase": false
+    },
+    {
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€",
+      "country": "European Union",
+      "rateToBase": 13.50,
+      "lastUpdated": "2026-03-09",
+      "isBase": false
+    }
+  ],
+  "conversionHistory": [
+    {
+      "date": "2026-03-09",
+      "currency": "USD",
+      "rate": 12.45
+    },
+    {
+      "date": "2026-03-08",
+      "currency": "USD",
+      "rate": 12.42
+    },
+    {
+      "date": "2026-03-07",
+      "currency": "USD",
+      "rate": 12.40
+    },
+    {
+      "date": "2026-03-09",
+      "currency": "EUR",
+      "rate": 13.50
+    },
+    {
+      "date": "2026-03-08",
+      "currency": "EUR",
+      "rate": 13.48
+    },
+    {
+      "date": "2026-03-07",
+      "currency": "EUR",
+      "rate": 13.45
+    }
+  ]
+}
