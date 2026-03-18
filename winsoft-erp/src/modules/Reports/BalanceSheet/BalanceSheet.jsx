@@ -165,7 +165,7 @@ const BalanceSheet = () => {
           {/* Current Assets */}
           <div className="mb-8">
             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Current Assets</h4>
-            <table className="w-full text-sm mb-4">
+            <table className="table-premium w-full text-sm mb-4">
               <tbody>
                 {balanceSheetData.assets
                   .filter(a => a.subcategory === 'Current Asset')
@@ -184,7 +184,7 @@ const BalanceSheet = () => {
           {/* Fixed Assets */}
           <div className="mb-8">
             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Fixed Assets</h4>
-            <table className="w-full text-sm mb-4">
+            <table className="table-premium w-full text-sm mb-4">
               <tbody>
                 {balanceSheetData.assets
                   .filter(a => a.subcategory === 'Fixed Asset' || a.subcategory === 'Contra Asset')
@@ -220,7 +220,7 @@ const BalanceSheet = () => {
             {/* Current Liabilities */}
             <div className="mb-8">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Current Liabilities</h4>
-              <table className="w-full text-sm">
+              <table className="table-premium w-full text-sm">
                 <tbody>
                   {balanceSheetData.liabilities
                     .filter(a => a.subcategory === 'Current Liability')
@@ -239,7 +239,7 @@ const BalanceSheet = () => {
             {/* Long-term Liabilities */}
             <div className="mb-8">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Long-term Liabilities</h4>
-              <table className="w-full text-sm">
+              <table className="table-premium w-full text-sm">
                 <tbody>
                   {balanceSheetData.liabilities
                     .filter(a => a.subcategory === 'Long-term Liability')
@@ -270,7 +270,7 @@ const BalanceSheet = () => {
               EQUITY
             </h3>
 
-            <table className="w-full text-sm mb-6">
+            <table className="table-premium w-full text-sm mb-6">
               <tbody>
                 {balanceSheetData.equity.map((item) => (
                   <tr key={item.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group">

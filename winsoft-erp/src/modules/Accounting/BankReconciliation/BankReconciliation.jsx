@@ -120,142 +120,140 @@ const BankReconciliation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="p-6 space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">Bank Reconciliation</h1>
-        <p className="text-gray-600">Reconcile bank statements with general ledger transactions</p>
+      <div className="mb-2">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1">Bank Reconciliation</h1>
+        <p className="text-slate-500">Reconcile bank statements with general ledger transactions</p>
       </div>
 
       {/* Bank Account Selection */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Bank Account</h3>
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-bold text-slate-800 mb-4">Bank Account</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <p className="text-sm text-gray-600 uppercase font-semibold mb-1">Account Name</p>
-            <p className="text-lg font-bold text-gray-900">{bankAccount.accountName}</p>
+            <p className="text-sm text-slate-500 uppercase font-semibold mb-1">Account Name</p>
+            <p className="text-lg font-bold text-slate-800">{bankAccount.accountName}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-600 uppercase font-semibold mb-1">Account Number</p>
-            <p className="text-lg font-bold font-mono text-gray-900">{bankAccount.accountNumber}</p>
+            <p className="text-sm text-slate-500 uppercase font-semibold mb-1">Account Number</p>
+            <p className="text-lg font-bold font-mono text-slate-800">{bankAccount.accountNumber}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-600 uppercase font-semibold mb-1">Bank</p>
-            <p className="text-lg font-bold text-gray-900">{bankAccount.bank}</p>
+            <p className="text-sm text-slate-500 uppercase font-semibold mb-1">Bank</p>
+            <p className="text-lg font-bold text-slate-800">{bankAccount.bank}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-600 uppercase font-semibold mb-1">Last Reconciled</p>
-            <p className="text-lg font-bold text-gray-900">{bankAccount.lastReconciled}</p>
+            <p className="text-sm text-slate-500 uppercase font-semibold mb-1">Last Reconciled</p>
+            <p className="text-lg font-bold text-slate-800">{bankAccount.lastReconciled}</p>
           </div>
         </div>
       </div>
 
       {/* Reconciliation Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">Bank Statement Balance</p>
-          <p className="text-3xl font-bold text-blue-600">₵{reconciliationSummary.bankStatementBalance.toFixed(2)}</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="glass-card p-6 flex flex-col justify-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Bank Statement Balance</p>
+          <p className="text-3xl font-bold text-indigo-600">₵{reconciliationSummary.bankStatementBalance.toFixed(2)}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">GL Balance</p>
-          <p className="text-3xl font-bold text-green-600">₵{reconciliationSummary.glBalance.toFixed(2)}</p>
+        <div className="glass-card p-6 flex flex-col justify-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">GL Balance</p>
+          <p className="text-3xl font-bold text-emerald-600">₵{reconciliationSummary.glBalance.toFixed(2)}</p>
         </div>
-        <div className={`rounded-lg shadow p-6 ${reconciliationSummary.isBalanced ? 'bg-green-50' : 'bg-red-50'}`}>
+        <div className={`glass-card p-6 flex flex-col justify-center border-l-4 ${reconciliationSummary.isBalanced ? 'border-emerald-500' : 'border-rose-500'}`}>
           <p className="text-sm uppercase font-semibold mb-2">
             {reconciliationSummary.isBalanced ? (
-              <span className="text-green-700">✓ Reconciliation Status</span>
+              <span className="text-emerald-700">✓ Reconciliation Status</span>
             ) : (
-              <span className="text-red-700">✗ Difference</span>
+              <span className="text-rose-700">✗ Difference</span>
             )}
           </p>
-          <p className={`text-3xl font-bold ${reconciliationSummary.isBalanced ? 'text-green-600' : 'text-red-600'}`}>
+          <p className={`text-3xl font-bold ${reconciliationSummary.isBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
             {reconciliationSummary.isBalanced ? 'Balanced' : `₵${Math.abs(reconciliationSummary.difference).toFixed(2)}`}
           </p>
         </div>
       </div>
 
       {/* Reconciliation Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">Total Transactions</p>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Total</p>
           <p className="text-3xl font-bold text-purple-600">{allBankTransactions.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">Matched</p>
-          <p className="text-3xl font-bold text-green-600">{matchedTransactions.length}</p>
+        <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Matched</p>
+          <p className="text-3xl font-bold text-emerald-600">{matchedTransactions.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">Unmatched (Bank)</p>
-          <p className="text-3xl font-bold text-orange-600">{unmatchedBankTransactions.length}</p>
+        <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Unmatched Bank</p>
+          <p className="text-3xl font-bold text-amber-600">{unmatchedBankTransactions.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <p className="text-sm text-gray-600 uppercase font-semibold mb-2">Adjustments Pending</p>
-          <p className="text-3xl font-bold text-blue-600">
+        <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
+          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Adjustments</p>
+          <p className="text-3xl font-bold text-indigo-600">
             {adjustmentEntries.filter((a) => a.status === 'pending').length}
           </p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
-          <button
-            onClick={() => setShowMatcher(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-          >
-            <Plus size={18} />
-            Match Transactions
-          </button>
-          <button
-            onClick={() => setShowReport(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-          >
-            <Download size={18} />
-            Reconciliation Report
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
-            <Upload size={18} />
-            Import Bank Statement
-          </button>
-        </div>
+      <div className="glass-card p-6 flex flex-col md:flex-row gap-4">
+        <button
+          onClick={() => setShowMatcher(true)}
+          className="btn-premium flex items-center justify-center gap-2"
+        >
+          <Plus size={18} />
+          Match Transactions
+        </button>
+        <button
+          onClick={() => setShowReport(true)}
+          className="btn-premium flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
+        >
+          <Download size={18} />
+          Reconciliation Report
+        </button>
+        <button className="btn-secondary flex items-center justify-center gap-2">
+          <Upload size={18} />
+          Import Bank Statement
+        </button>
       </div>
 
       {/* Matched Transactions */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-          <CheckCircle size={24} className="text-green-600" />
+      <div className="glass-card p-6 overflow-hidden">
+        <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <CheckCircle size={24} className="text-emerald-500" />
           Matched Transactions ({matchedTransactions.length})
         </h3>
 
         {matchedTransactions.length === 0 ? (
-          <p className="text-gray-500">No transactions matched yet</p>
+          <p className="text-slate-500">No transactions matched yet</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100 border-b">
+            <table className="table-premium">
+              <thead>
                 <tr>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Date</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Bank Ref</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">GL Ref</th>
-                  <th className="px-4 py-2 text-right font-semibold text-gray-700">Amount</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Type</th>
-                  <th className="px-4 py-2 text-center font-semibold text-gray-700">Status</th>
+                  <th className="px-4 py-3 text-left">Date</th>
+                  <th className="px-4 py-3 text-left">Bank Ref</th>
+                  <th className="px-4 py-3 text-left">GL Ref</th>
+                  <th className="px-4 py-3 text-right">Amount</th>
+                  <th className="px-4 py-3 text-left">Type</th>
+                  <th className="px-4 py-3 text-center">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {matchedTransactions.map((match) => (
-                  <tr key={match.id} className="border-b hover:bg-gray-50">
-                    <td className="px-4 py-3 text-gray-900">{match.date}</td>
-                    <td className="px-4 py-3 font-semibold text-gray-900">{match.bankTransactionId}</td>
-                    <td className="px-4 py-3 font-semibold text-gray-900">{match.glTransactionId}</td>
-                    <td className="px-4 py-3 text-right font-mono text-gray-900">₵{match.amount.toFixed(2)}</td>
+                  <tr key={match.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                    <td className="px-4 py-3 text-slate-700">{match.date}</td>
+                    <td className="px-4 py-3 font-semibold text-slate-800">{match.bankTransactionId}</td>
+                    <td className="px-4 py-3 font-semibold text-slate-800">{match.glTransactionId}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-800">₵{match.amount.toFixed(2)}</td>
                     <td className="px-4 py-3">
-                      <span className="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-800">
+                      <span className="inline-block px-2 py-1 rounded-md text-xs font-semibold bg-emerald-100/50 text-emerald-700 border border-emerald-200">
                         {match.matchType}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center">
-                      <CheckCircle size={20} className="text-green-600 mx-auto" />
+                      <CheckCircle size={20} className="text-emerald-500 mx-auto" />
                     </td>
                   </tr>
                 ))}
@@ -267,35 +265,35 @@ const BankReconciliation = () => {
 
       {/* Unmatched Bank Transactions */}
       {unmatchedBankTransactions.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <AlertCircle size={24} className="text-orange-600" />
+        <div className="glass-card p-6 overflow-hidden">
+          <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <AlertCircle size={24} className="text-amber-500" />
             Unmatched Bank Transactions ({unmatchedBankTransactions.length})
           </h3>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100 border-b">
+            <table className="table-premium">
+              <thead>
                 <tr>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Date</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Reference</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Description</th>
-                  <th className="px-4 py-2 text-right font-semibold text-gray-700">Amount</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Reason</th>
+                  <th className="px-4 py-3 text-left">Date</th>
+                  <th className="px-4 py-3 text-left">Reference</th>
+                  <th className="px-4 py-3 text-left">Description</th>
+                  <th className="px-4 py-3 text-right">Amount</th>
+                  <th className="px-4 py-3 text-left">Reason</th>
                 </tr>
               </thead>
               <tbody>
                 {unmatchedBankTransactions.map((trans) => (
-                  <tr key={trans.id} className="border-b hover:bg-gray-50">
-                    <td className="px-4 py-3 text-gray-900">{trans.date}</td>
-                    <td className="px-4 py-3 font-semibold text-gray-900">{trans.reference}</td>
-                    <td className="px-4 py-3 text-gray-700">{trans.description}</td>
-                    <td className="px-4 py-3 text-right font-mono text-gray-900">
-                      <span className={trans.type === 'credit' ? 'text-green-600' : 'text-red-600'}>
+                  <tr key={trans.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                    <td className="px-4 py-3 text-slate-700">{trans.date}</td>
+                    <td className="px-4 py-3 font-semibold text-slate-800">{trans.reference}</td>
+                    <td className="px-4 py-3 text-slate-700">{trans.description}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-800">
+                      <span className={trans.type === 'credit' ? 'text-emerald-600' : 'text-rose-500'}>
                         {trans.type === 'credit' ? '+' : '-'}₵{trans.amount.toFixed(2)}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-gray-600">{trans.reason}</td>
+                    <td className="px-4 py-3 text-slate-500">{trans.reason}</td>
                   </tr>
                 ))}
               </tbody>
@@ -306,36 +304,36 @@ const BankReconciliation = () => {
 
       {/* Adjustment Entries */}
       {adjustmentEntries.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <AlertCircle size={24} className="text-blue-600" />
+        <div className="glass-card p-6 overflow-hidden">
+          <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <AlertCircle size={24} className="text-indigo-500" />
             Adjustment Entries
           </h3>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100 border-b">
+            <table className="table-premium">
+              <thead>
                 <tr>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Date</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Description</th>
-                  <th className="px-4 py-2 text-right font-semibold text-gray-700">Amount</th>
-                  <th className="px-4 py-2 text-left font-semibold text-gray-700">Bank Reference</th>
-                  <th className="px-4 py-2 text-center font-semibold text-gray-700">Status</th>
+                  <th className="px-4 py-3 text-left">Date</th>
+                  <th className="px-4 py-3 text-left">Description</th>
+                  <th className="px-4 py-3 text-right">Amount</th>
+                  <th className="px-4 py-3 text-left">Bank Reference</th>
+                  <th className="px-4 py-3 text-center">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {adjustmentEntries.map((adj) => (
-                  <tr key={adj.id} className="border-b hover:bg-gray-50">
-                    <td className="px-4 py-3 text-gray-900">{adj.date}</td>
-                    <td className="px-4 py-3 text-gray-700">{adj.description}</td>
-                    <td className="px-4 py-3 text-right font-mono text-gray-900">₵{adj.amount.toFixed(2)}</td>
-                    <td className="px-4 py-3 font-semibold text-gray-900">{adj.bankTransactionReference}</td>
+                  <tr key={adj.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                    <td className="px-4 py-3 text-slate-700">{adj.date}</td>
+                    <td className="px-4 py-3 text-slate-700">{adj.description}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-800">₵{adj.amount.toFixed(2)}</td>
+                    <td className="px-4 py-3 font-semibold text-slate-800">{adj.bankTransactionReference}</td>
                     <td className="px-4 py-3 text-center">
                       <span
-                        className={`inline-block px-2 py-1 rounded text-xs font-semibold ${
+                        className={`inline-block px-2 py-1 rounded-md text-xs font-semibold border ${
                           adj.status === 'posted'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-emerald-100/50 text-emerald-700 border-emerald-200'
+                            : 'bg-amber-100/50 text-amber-700 border-amber-200'
                         }`}
                       >
                         {adj.status}
@@ -350,9 +348,9 @@ const BankReconciliation = () => {
       )}
 
       {/* Information Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
-        <h4 className="font-bold text-blue-900 mb-3">Bank Reconciliation Information</h4>
-        <ul className="text-sm text-blue-800 space-y-2">
+      <div className="glass-card bg-indigo-50/30 border border-indigo-100 p-6">
+        <h4 className="font-bold text-indigo-900 mb-3">Bank Reconciliation Information</h4>
+        <ul className="text-sm text-indigo-800 space-y-2">
           <li>• Click "Match Transactions" to manually match unmatched bank transactions with GL entries</li>
           <li>• Automatic matching occurs when amounts and dates match within a tolerance</li>
           <li>• Adjustment entries are created for bank charges, interest, or other bank-originated items</li>

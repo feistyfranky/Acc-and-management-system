@@ -313,30 +313,30 @@ const JournalEntry = () => {
                 </div>
 
                 <div className="overflow-x-auto mb-3">
-                  <table className="w-full text-sm">
+                  <table className="table-premium w-full text-sm">
                     <thead>
-                      <tr className="bg-gray-50 border-b border-gray-200">
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-600">Account</th>
-                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-600">Debit</th>
-                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-600">Credit</th>
+                      <tr>
+                        <th>Account</th>
+                        <th className="text-right">Debit</th>
+                        <th className="text-right">Credit</th>
                       </tr>
                     </thead>
                     <tbody>
                       {entry.rows.map((row, idx) => (
-                        <tr key={idx} className="border-b border-gray-200 last:border-b-0">
-                          <td className="px-3 py-2 text-gray-900">{row.accountName}</td>
-                          <td className="px-3 py-2 text-right text-gray-900">
+                        <tr key={idx}>
+                          <td>{row.accountName}</td>
+                          <td className="text-right font-mono font-medium">
                             {row.debit > 0 ? row.debit.toFixed(2) : '-'}
                           </td>
-                          <td className="px-3 py-2 text-right text-gray-900">
+                          <td className="text-right font-mono font-medium">
                             {row.credit > 0 ? row.credit.toFixed(2) : '-'}
                           </td>
                         </tr>
                       ))}
-                      <tr className="bg-gray-50 font-semibold">
-                        <td className="px-3 py-2 text-gray-900">Total</td>
-                        <td className="px-3 py-2 text-right text-gray-900">{entry.totalDebit.toFixed(2)}</td>
-                        <td className="px-3 py-2 text-right text-gray-900">{entry.totalCredit.toFixed(2)}</td>
+                      <tr className="bg-slate-50/50">
+                        <td className="font-extrabold uppercase tracking-widest text-slate-800">Total</td>
+                        <td className="text-right font-mono font-bold text-indigo-600">{entry.totalDebit.toFixed(2)}</td>
+                        <td className="text-right font-mono font-bold text-indigo-600">{entry.totalCredit.toFixed(2)}</td>
                       </tr>
                     </tbody>
                   </table>

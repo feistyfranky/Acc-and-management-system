@@ -74,14 +74,14 @@ const ChartOfAccounts = () => {
       <div className="glass-card mb-6 p-4 flex gap-4 flex-wrap items-center justify-between">
         <div className="flex gap-4 flex-1 min-w-[300px]">
           {/* Search Box */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-3 text-slate-400" size={20} />
+          <div className="flex-1 relative shadow-sm rounded-xl">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={18} />
             <input
               type="text"
               placeholder="Search by account name, code, or description..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-slate-700"
+              className="w-full pl-11 pr-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-slate-700 shadow-inner"
             />
           </div>
 
@@ -168,7 +168,7 @@ const ChartOfAccounts = () => {
                     <td className="text-right">
                       <button
                         onClick={() => handleDeleteAccount(account.id)}
-                        className="text-rose-400 hover:text-rose-600 font-medium hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-colors text-sm"
+                        className="btn-secondary text-rose-500 hover:text-rose-700 hover:bg-rose-50 hover:border-rose-200 px-3 py-1.5 transition-colors text-sm"
                       >
                         Delete
                       </button>

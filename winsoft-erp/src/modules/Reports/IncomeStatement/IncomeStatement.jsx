@@ -132,7 +132,7 @@ const IncomeStatement = () => {
         {/* Revenue Section */}
         <div className="mb-8 pl-4 border-l-2 border-indigo-200">
           <h3 className="text-sm font-extrabold text-indigo-700 mb-4 uppercase tracking-widest">REVENUE</h3>
-          <table className="w-full mb-4">
+          <table className="table-premium w-full mb-4">
             <tbody>
               {statementData.income.map((item) => (
                 <tr key={item.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group">
@@ -159,7 +159,7 @@ const IncomeStatement = () => {
         {/* Expenses Section */}
         <div className="mb-8 pl-4 border-l-2 border-orange-200">
           <h3 className="text-sm font-extrabold text-orange-700 mb-4 uppercase tracking-widest">OPERATING EXPENSES</h3>
-          <table className="w-full mb-4">
+          <table className="table-premium w-full mb-4">
             <tbody>
               {statementData.expenses.map((item) => (
                 <tr key={item.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors group">

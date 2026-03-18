@@ -1,2 +1,7 @@
-/* Tailwind CSS is imported in index.css */
+/* Custom Layout Fix */
+@media (min-width: 768px) {
+  .main-layout {
+    margin-left: 18rem !important; /* Forces 288px margin exactly equal to sidebar */
+  }
+}
 

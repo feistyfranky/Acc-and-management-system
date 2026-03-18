@@ -159,7 +159,7 @@ function App() {
         </div>
 
         {/* Main Content */}
-        <div className="md:ml-72 relative">
+        <div style={{ marginLeft: '288px' }} className="relative min-h-screen">
           {/* Subtle top blur ambient light */}
           <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
           
