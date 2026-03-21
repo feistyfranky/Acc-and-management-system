@@ -1,3 +1,4 @@
+// v2 - 2026-03-18T13:43:00Z cache bust
 import React, { useState, useMemo } from 'react';
 import { Download, Plus, CheckCircle, XCircle, AlertCircle, Upload } from 'lucide-react';
 import bankReconciliationData from '../../../data/bankReconciliationData.json';
@@ -130,7 +131,7 @@ const BankReconciliation = () => {
       {/* Bank Account Selection */}
       <div className="glass-card p-6">
         <h3 className="text-lg font-bold text-slate-800 mb-4">Bank Account</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bank-account-grid">
           <div>
             <p className="text-sm text-slate-500 uppercase font-semibold mb-1">Account Name</p>
             <p className="text-lg font-bold text-slate-800">{bankAccount.accountName}</p>
@@ -151,31 +152,27 @@ const BankReconciliation = () => {
       </div>
 
       {/* Reconciliation Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="glass-card p-6 flex flex-col justify-center">
-          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Bank Statement Balance</p>
-          <p className="text-3xl font-bold text-indigo-600">₵{reconciliationSummary.bankStatementBalance.toFixed(2)}</p>
+      <div className="recon-summary-grid">
+        <div className="glass-card p-5 flex flex-col justify-center" style={{overflow:'hidden'}}>
+          <p style={{fontSize:'0.65rem', letterSpacing:'0.08em', textTransform:'uppercase', fontWeight:700, color:'#64748b', marginBottom:'0.5rem', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>Bank Statement Balance</p>
+          <p style={{fontSize:'1.25rem', fontWeight:800, color:'#4f46e5', fontFamily:'monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>₵{reconciliationSummary.bankStatementBalance.toFixed(2)}</p>
         </div>
-        <div className="glass-card p-6 flex flex-col justify-center">
-          <p className="text-sm text-slate-500 uppercase font-semibold mb-2">GL Balance</p>
-          <p className="text-3xl font-bold text-emerald-600">₵{reconciliationSummary.glBalance.toFixed(2)}</p>
+        <div className="glass-card p-5 flex flex-col justify-center" style={{overflow:'hidden'}}>
+          <p style={{fontSize:'0.65rem', letterSpacing:'0.08em', textTransform:'uppercase', fontWeight:700, color:'#64748b', marginBottom:'0.5rem', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>GL Balance</p>
+          <p style={{fontSize:'1.25rem', fontWeight:800, color:'#059669', fontFamily:'monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>₵{reconciliationSummary.glBalance.toFixed(2)}</p>
         </div>
-        <div className={`glass-card p-6 flex flex-col justify-center border-l-4 ${reconciliationSummary.isBalanced ? 'border-emerald-500' : 'border-rose-500'}`}>
-          <p className="text-sm uppercase font-semibold mb-2">
-            {reconciliationSummary.isBalanced ? (
-              <span className="text-emerald-700">✓ Reconciliation Status</span>
-            ) : (
-              <span className="text-rose-700">✗ Difference</span>
-            )}
+        <div style={{overflow:'hidden', borderLeft: reconciliationSummary.isBalanced ? '4px solid #10b981' : '4px solid #f43f5e'}} className="glass-card p-5 flex flex-col justify-center">
+          <p style={{fontSize:'0.65rem', letterSpacing:'0.08em', textTransform:'uppercase', fontWeight:700, marginBottom:'0.5rem', whiteSpace:'nowrap', overflow:'hidden', color: reconciliationSummary.isBalanced ? '#065f46' : '#9f1239'}}>
+            {reconciliationSummary.isBalanced ? '✓ Reconciliation Status' : '✗ Difference'}
           </p>
-          <p className={`text-3xl font-bold ${reconciliationSummary.isBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
+          <p style={{fontSize:'1.25rem', fontWeight:800, fontFamily:'monospace', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', color: reconciliationSummary.isBalanced ? '#059669' : '#f43f5e'}}>
             {reconciliationSummary.isBalanced ? 'Balanced' : `₵${Math.abs(reconciliationSummary.difference).toFixed(2)}`}
           </p>
         </div>
       </div>
 
       {/* Reconciliation Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="recon-metrics-grid">
         <div className="glass-card p-6 flex flex-col items-center justify-center text-center">
           <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Total</p>
           <p className="text-3xl font-bold text-purple-600">{allBankTransactions.length}</p>
@@ -197,7 +194,7 @@ const BankReconciliation = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="glass-card p-6 flex flex-col md:flex-row gap-4">
+      <div className="glass-card p-6 recon-actions">
         <button
           onClick={() => setShowMatcher(true)}
           className="btn-premium flex items-center justify-center gap-2"

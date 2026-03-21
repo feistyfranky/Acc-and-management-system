@@ -38,7 +38,7 @@ const CurrencyManagement = () => {
       {/* Header */}
       <div className="mb-2">
         <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1">Currency Management</h1>
-        <p className="text-slate-500">Manage exchange rates and multi-currency settings for WinSoft ERP</p>
+        <p className="text-slate-500">Manage exchange rates and multi-currency settings for Nexus ERP</p>
       </div>
 
       {/* Base Currency Card */}

@@ -1,7 +1,69 @@
-/* Custom Layout Fix */
+/* ============================================================
+   Nexus ERP - Raw Layout Overrides
+   (Bypassing Tailwind v4 responsive class generation issues)
+   ============================================================ */
+
+/* Sidebar layout: push content right of sidebar */
 @media (min-width: 768px) {
   .main-layout {
-    margin-left: 18rem !important; /* Forces 288px margin exactly equal to sidebar */
+    margin-left: 18rem !important;
   }
 }
 
+/* Bank Reconciliation: Summary Cards (3 across on lg) */
+.recon-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .recon-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .recon-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Bank Reconciliation: Metrics Cards (4 across on lg) */
+.recon-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .recon-metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Bank Reconciliation: Action Buttons */
+.recon-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Bank Account Info Cards (2 on sm, 4 on lg) */
+.bank-account-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .bank-account-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .bank-account-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* General cards overflow fix */
+.glass-card {
+  overflow: hidden;
+}

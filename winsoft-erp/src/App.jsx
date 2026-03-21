@@ -24,10 +24,10 @@ function App() {
           <div className="flex flex-col flex-grow sidebar-glass pt-6 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-6 mb-10">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mr-3 shadow-lg shadow-indigo-500/30 text-white font-bold text-xl">
-                W
+                N
               </div>
               <div className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-                WinSoft ERP
+                Nexus ERP
               </div>
             </div>
 
