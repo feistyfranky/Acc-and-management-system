@@ -39,16 +39,16 @@ const ChartOfAccounts = () => {
     }
   };
 
-  // Get category color
-  const getCategoryColor = (category) => {
-    const colors = {
-      'Asset': 'bg-blue-100 text-blue-800',
-      'Liability': 'bg-red-100 text-red-800',
-      'Equity': 'bg-green-100 text-green-800',
-      'Income': 'bg-purple-100 text-purple-800',
-      'Expense': 'bg-orange-100 text-orange-800'
+  // Get category badge style (dark-theme, muted)
+  const categoryStyle = (category) => {
+    const styles = {
+      Asset:     { background: 'rgba(99,102,241,0.1)',  color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.2)' },
+      Liability: { background: 'rgba(239,68,68,0.08)',  color: '#fca5a5', border: '1px solid rgba(239,68,68,0.18)' },
+      Equity:    { background: 'rgba(16,185,129,0.08)', color: '#6ee7b7', border: '1px solid rgba(16,185,129,0.18)' },
+      Income:    { background: 'rgba(139,92,246,0.08)', color: '#c4b5fd', border: '1px solid rgba(139,92,246,0.18)' },
+      Expense:   { background: 'rgba(249,115,22,0.08)', color: '#fdba74', border: '1px solid rgba(249,115,22,0.18)' },
     };
-    return colors[category] || 'bg-gray-100 text-gray-800';
+    return styles[category] || { background: 'rgba(100,116,139,0.08)', color: '#94a3b8', border: '1px solid rgba(100,116,139,0.18)' };
   };
 
   // Format currency
@@ -61,58 +61,40 @@ const ChartOfAccounts = () => {
   };
 
   return (
-    <div className="min-h-screen p-2 sm:p-4 md:p-8 animate-fade-in text-slate-800">
+    <div className="min-h-screen animate-fade-in" style={{ color: '#cbd5e1' }}>
       {/* Header */}
-      <div className="mb-8 flex justify-between items-end">
-        <div>
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-indigo-600 mb-2">Chart of Accounts</h1>
-          <p className="text-slate-500 font-medium tracking-wide">Manage your company's account structure and settings</p>
-        </div>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold mb-1" style={{ color: '#e2e8f0' }}>Chart of Accounts</h1>
+        <p style={{ color: '#475569', fontSize: '0.875rem' }}>Manage your company's account structure and settings</p>
       </div>
 
       {/* Action Bar */}
-      <div className="glass-card mb-6 p-4 flex gap-4 flex-wrap items-center justify-between">
-        <div className="flex gap-4 flex-1 min-w-[300px]">
-          {/* Search Box */}
-          <div className="flex-1 relative shadow-sm rounded-xl">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={18} />
-            <input
-              type="text"
-              placeholder="Search by account name, code, or description..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-slate-700 shadow-inner"
-            />
-          </div>
-
-          {/* Category Filter */}
-          <div className="relative">
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="flex items-center gap-2 px-4 py-2 border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer text-slate-700 font-medium transition-all"
-            >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-          </div>
+      <div className="glass-card mb-5 p-3 flex gap-3 flex-wrap items-center">
+        <div className="relative flex-1" style={{ minWidth: '220px' }}>
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={15} style={{ color: '#475569' }} />
+          <input
+            type="text"
+            placeholder="Search accounts..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="form-input pl-9 pr-3 py-2 text-sm"
+          />
         </div>
-
-        {/* Add Account Button */}
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 btn-premium px-6 py-2.5"
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="form-input px-3 py-2 text-sm"
+          style={{ minWidth: '120px' }}
         >
-          <Plus size={20} />
-          Add Account
+          {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+        </select>
+        <button onClick={() => setIsModalOpen(true)} className="btn-premium flex items-center gap-2 px-4 py-2 text-sm ml-auto">
+          <Plus size={15} /> Add Account
         </button>
       </div>
 
-      {/* Results Info */}
-      <div className="mb-4 text-sm text-slate-500 font-medium px-2">
-        Showing <span className="font-bold text-slate-700">{filteredAccounts.length}</span> of{' '}
-        <span className="font-bold text-slate-700">{accounts.length}</span> accounts
+      <div className="mb-3 text-xs px-1" style={{ color: '#475569' }}>
+        Showing <span style={{ color: '#94a3b8', fontWeight: 600 }}>{filteredAccounts.length}</span> of <span style={{ color: '#94a3b8', fontWeight: 600 }}>{accounts.length}</span> accounts
       </div>
 
       {/* Table */}
@@ -135,40 +117,44 @@ const ChartOfAccounts = () => {
                 filteredAccounts.map((account) => (
                   <tr key={account.id}>
                     <td>
-                      <span className="font-mono font-bold text-indigo-600">{account.id}</span>
+                      <span className="font-mono" style={{ color: '#818cf8', fontWeight: 600, fontSize: '0.8125rem' }}>{account.id}</span>
                     </td>
                     <td>
-                      <div>
-                        <p className="font-bold text-slate-800">{account.name}</p>
-                        <p className="text-xs text-slate-500 mt-0.5">{account.description}</p>
-                      </div>
+                      <p style={{ color: '#cbd5e1', fontWeight: 600, fontSize: '0.875rem' }}>{account.name}</p>
+                      <p style={{ color: '#475569', fontSize: '0.75rem', marginTop: '1px' }}>{account.description}</p>
                     </td>
                     <td>
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getCategoryColor(account.category)}`}>
+                      <span
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                        style={categoryStyle(account.category)}
+                      >
                         {account.category}
                       </span>
                     </td>
-                    <td className="text-sm font-medium text-slate-600">
-                      {account.subcategory}
-                    </td>
+                    <td style={{ color: '#64748b', fontSize: '0.8125rem' }}>{account.subcategory}</td>
                     <td className="text-right">
-                      <span className={`text-sm font-bold font-mono ${account.balance >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                      <span className="font-mono" style={{ fontWeight: 600, fontSize: '0.875rem', color: account.balance >= 0 ? '#6ee7b7' : '#fca5a5' }}>
                         {formatCurrency(account.balance)}
                       </span>
                     </td>
                     <td>
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                        account.status === 'Active'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-slate-100 text-slate-800'
-                      }`}>
+                      <span
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                        style={account.status === 'Active'
+                          ? { background: 'rgba(16,185,129,0.08)', color: '#6ee7b7', border: '1px solid rgba(16,185,129,0.18)' }
+                          : { background: 'rgba(100,116,139,0.08)', color: '#94a3b8', border: '1px solid rgba(100,116,139,0.18)' }
+                        }
+                      >
                         {account.status}
                       </span>
                     </td>
                     <td className="text-right">
                       <button
                         onClick={() => handleDeleteAccount(account.id)}
-                        className="btn-secondary text-rose-500 hover:text-rose-700 hover:bg-rose-50 hover:border-rose-200 px-3 py-1.5 transition-colors text-sm"
+                        className="text-xs px-2.5 py-1 rounded-md transition-all"
+                        style={{ color: '#fca5a5', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}
+                        onMouseEnter={e => e.currentTarget.style.background='rgba(239,68,68,0.15)'}
+                        onMouseLeave={e => e.currentTarget.style.background='rgba(239,68,68,0.08)'}
                       >
                         Delete
                       </button>
@@ -177,9 +163,9 @@ const ChartOfAccounts = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="py-12 text-center text-slate-500">
-                    <p className="text-lg font-bold text-slate-700 mb-1">No accounts found</p>
-                    <p className="text-sm">Try adjusting your search or filter criteria</p>
+                  <td colSpan="7" className="py-12 text-center">
+                    <p style={{ color: '#64748b', fontWeight: 600 }}>No accounts found</p>
+                    <p style={{ color: '#334155', fontSize: '0.8125rem', marginTop: '4px' }}>Try adjusting your search or filters</p>
                   </td>
                 </tr>
               )}

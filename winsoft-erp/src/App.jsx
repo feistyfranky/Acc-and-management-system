@@ -11,172 +11,229 @@ import IncomeStatement from './modules/Reports/IncomeStatement';
 import BalanceSheet from './modules/Reports/BalanceSheet';
 import CashFlowStatement from './modules/Reports/CashFlowStatement';
 import CurrencyManagement from './modules/Settings/CurrencyManagement';
+import {
+  LayoutDashboard, BookOpen, ClipboardList, BookMarked, CreditCard,
+  Package, Users, BarChart2, TrendingUp, Scale, Activity,
+  Settings, Globe, Bell, Search, ChevronRight, LogOut, User
+} from 'lucide-react';
 import './App.css';
+
+const PAGE_META = {
+  chartOfAccounts:    { label: 'Chart of Accounts',    icon: BookOpen },
+  journalEntry:       { label: 'Journal Entry',         icon: ClipboardList },
+  generalLedger:      { label: 'General Ledger',        icon: BookMarked },
+  bankReconciliation: { label: 'Bank Reconciliation',   icon: CreditCard },
+  inventory:          { label: 'Inventory Dashboard',   icon: Package },
+  customerManagement: { label: 'Customer Management',   icon: Users },
+  trialBalance:       { label: 'Trial Balance',         icon: BarChart2 },
+  incomeStatement:    { label: 'Income Statement',      icon: TrendingUp },
+  balanceSheet:       { label: 'Balance Sheet',         icon: Scale },
+  cashFlow:           { label: 'Cash Flow Statement',   icon: Activity },
+  currency:           { label: 'Currency Management',   icon: Globe },
+};
+
+const NAV_SECTIONS = [
+  {
+    title: 'Accounting',
+    items: [
+      { key: 'chartOfAccounts',    label: 'Chart of Accounts',  Icon: BookOpen },
+      { key: 'journalEntry',       label: 'Journal Entry',      Icon: ClipboardList },
+      { key: 'generalLedger',      label: 'General Ledger',     Icon: BookMarked },
+      { key: 'bankReconciliation', label: 'Bank Reconciliation',Icon: CreditCard },
+    ],
+  },
+  {
+    title: 'Inventory',
+    items: [
+      { key: 'inventory', label: 'Dashboard', Icon: Package },
+    ],
+  },
+  {
+    title: 'CRM',
+    items: [
+      { key: 'customerManagement', label: 'Customer Management', Icon: Users },
+    ],
+  },
+  {
+    title: 'Reports',
+    items: [
+      { key: 'trialBalance',    label: 'Trial Balance',       Icon: BarChart2 },
+      { key: 'incomeStatement', label: 'Income Statement',    Icon: TrendingUp },
+      { key: 'balanceSheet',    label: 'Balance Sheet',       Icon: Scale },
+      { key: 'cashFlow',        label: 'Cash Flow Statement', Icon: Activity },
+    ],
+  },
+  {
+    title: 'Settings',
+    items: [
+      { key: 'currency', label: 'Currency Management', Icon: Globe },
+    ],
+  },
+];
 
 function App() {
   const [activePage, setActivePage] = useState('chartOfAccounts');
 
+  const currentMeta = PAGE_META[activePage] || {};
+
   return (
     <AppProvider>
-      <div className="min-h-screen text-slate-800">
-        {/* Sidebar Navigation */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-72 md:flex-col z-50">
-          <div className="flex flex-col flex-grow sidebar-glass pt-6 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-6 mb-10">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mr-3 shadow-lg shadow-indigo-500/30 text-white font-bold text-xl">
-                N
+      <div className="min-h-screen" style={{ background: 'var(--surface-0)' }}>
+
+        {/* ── Sidebar ────────────────────────────────────────────── */}
+        <aside
+          className="hidden md:flex md:flex-col md:fixed md:inset-y-0 md:w-64 z-50 sidebar-glass"
+          style={{ width: '256px' }}
+        >
+          {/* Logo */}
+          <div className="flex items-center gap-3 px-5 py-5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-white text-lg flex-shrink-0"
+              style={{ background: 'var(--primary-gradient)', boxShadow: '0 4px 14px rgba(99,102,241,0.45)' }}
+            >
+              N
+            </div>
+            <div>
+              <p className="font-extrabold text-base leading-none" style={{ color: '#e2e8f0' }}>Nexus ERP</p>
+              <p className="text-xs mt-0.5" style={{ color: '#475569' }}>Business Suite</p>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+            {NAV_SECTIONS.map(section => (
+              <div key={section.title}>
+                <p
+                  className="px-3 mb-1.5 text-xs font-bold uppercase tracking-widest"
+                  style={{ color: '#334155', letterSpacing: '0.1em' }}
+                >
+                  {section.title}
+                </p>
+                <div className="space-y-0.5">
+                  {section.items.map(({ key, label, Icon }) => {
+                    const isActive = activePage === key;
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => setActivePage(key)}
+                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all nav-link ${isActive ? 'active' : ''}`}
+                      >
+                        <Icon
+                          size={16}
+                          className="flex-shrink-0"
+                          style={{ color: isActive ? '#818cf8' : '#475569' }}
+                        />
+                        <span className="flex-1" style={{ color: isActive ? '#a5b4fc' : '#64748b' }}>{label}</span>
+                        {isActive && (
+                          <ChevronRight size={12} style={{ color: '#6366f1' }} />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-                Nexus ERP
+            ))}
+          </nav>
+
+          {/* User Profile Block */}
+          <div className="px-3 py-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+            <div
+              className="flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-all"
+              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.07)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'}
+            >
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+              >
+                A
               </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold truncate" style={{ color: '#cbd5e1' }}>Admin User</p>
+                <p className="text-xs truncate" style={{ color: '#475569' }}>admin@nexuserp.com</p>
+              </div>
+              <LogOut size={14} style={{ color: '#475569', flexShrink: 0 }} />
+            </div>
+          </div>
+        </aside>
+
+        {/* ── Page shell ─────────────────────────────────────────── */}
+        <div style={{ marginLeft: '256px' }} className="flex flex-col min-h-screen">
+
+          {/* Top Header Bar */}
+          <header
+            className="sticky top-0 z-40 topbar-glass flex items-center justify-between px-6"
+            style={{ height: '60px' }}
+          >
+            {/* Page title */}
+            <div className="flex items-center gap-3">
+              {currentMeta.icon && (
+                <currentMeta.icon size={18} style={{ color: '#818cf8' }} />
+              )}
+              <h2
+                className="text-sm font-semibold"
+                style={{ color: '#cbd5e1' }}
+              >
+                {currentMeta.label || 'Nexus ERP'}
+              </h2>
             </div>
 
-            <nav className="mt-2 flex-1 px-4 space-y-8">
-              {/* Accounting Section */}
-              <div>
-                <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Accounting</p>
-                <div className="space-y-1">
-                  <button
-                    onClick={() => setActivePage('chartOfAccounts')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'chartOfAccounts' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Chart of Accounts
-                  </button>
-                  <button
-                    onClick={() => setActivePage('journalEntry')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'journalEntry' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Journal Entry
-                  </button>
-                  <button
-                    onClick={() => setActivePage('generalLedger')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'generalLedger' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    General Ledger
-                  </button>
-                  <button
-                    onClick={() => setActivePage('bankReconciliation')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'bankReconciliation' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Bank Reconciliation
-                  </button>
-                </div>
-              </div>
+            {/* Right actions */}
+            <div className="flex items-center gap-2">
+              {/* Search */}
+              <button
+                className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
+                style={{ color: '#64748b', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+                onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,0.08)'; e.currentTarget.style.color='#94a3b8'; }}
+                onMouseLeave={e => { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#64748b'; }}
+              >
+                <Search size={15} />
+              </button>
 
-              {/* Inventory Section */}
-              <div>
-                <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Inventory</p>
-                <div className="space-y-1">
-                  <button
-                    onClick={() => setActivePage('inventory')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'inventory' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Dashboard
-                  </button>
-                </div>
-              </div>
+              {/* Notifications */}
+              <button
+                className="w-8 h-8 rounded-lg flex items-center justify-center relative transition-all"
+                style={{ color: '#64748b', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+                onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,0.08)'; e.currentTarget.style.color='#94a3b8'; }}
+                onMouseLeave={e => { e.currentTarget.style.background='rgba(255,255,255,0.04)'; e.currentTarget.style.color='#64748b'; }}
+              >
+                <Bell size={15} />
+                <span
+                  className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full"
+                  style={{ background: '#6366f1' }}
+                />
+              </button>
 
-              {/* CRM Section */}
-              <div>
-                <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">CRM</p>
-                <div className="space-y-1">
-                  <button
-                    onClick={() => setActivePage('customerManagement')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'customerManagement' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Customer Management
-                  </button>
-                </div>
-              </div>
+              {/* Divider */}
+              <div className="w-px h-5 mx-1" style={{ background: 'rgba(255,255,255,0.08)' }} />
 
-              {/* Reports Section */}
-              <div>
-                <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Reports</p>
-                <div className="space-y-1">
-                  <button
-                    onClick={() => setActivePage('trialBalance')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'trialBalance' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Trial Balance
-                  </button>
-                  <button
-                    onClick={() => setActivePage('incomeStatement')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'incomeStatement' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Income Statement
-                  </button>
-                  <button
-                    onClick={() => setActivePage('balanceSheet')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'balanceSheet' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Balance Sheet
-                  </button>
-                  <button
-                    onClick={() => setActivePage('cashFlow')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'cashFlow' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Cash Flow Statement
-                  </button>
-                </div>
+              {/* Avatar */}
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs cursor-pointer"
+                style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', boxShadow: '0 0 0 2px rgba(99,102,241,0.35)' }}
+              >
+                A
               </div>
+            </div>
+          </header>
 
-              {/* Settings Section */}
-              <div>
-                <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Settings</p>
-                <div className="space-y-1">
-                  <button
-                    onClick={() => setActivePage('currency')}
-                    className={`w-full text-left px-4 py-2.5 text-sm transition-all nav-link ${
-                      activePage === 'currency' ? 'active shadow-lg shadow-black/20' : 'text-slate-400'
-                    }`}
-                  >
-                    Currency Management
-                  </button>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div style={{ marginLeft: '288px' }} className="relative min-h-screen">
-          {/* Subtle top blur ambient light */}
-          <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
-          
-          <div className="relative z-10 px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
-            {activePage === 'chartOfAccounts' && <ChartOfAccounts />}
-            {activePage === 'journalEntry' && <JournalEntry />}
-            {activePage === 'generalLedger' && <GeneralLedger />}
+          {/* Main Content */}
+          <main className="flex-1 px-6 py-6 animate-fade-in" style={{ color: 'var(--text-primary)' }}>
+            {activePage === 'chartOfAccounts'    && <ChartOfAccounts />}
+            {activePage === 'journalEntry'       && <JournalEntry />}
+            {activePage === 'generalLedger'      && <GeneralLedger />}
             {activePage === 'bankReconciliation' && <BankReconciliation />}
-            {activePage === 'inventory' && <InventoryDashboard />}
+            {activePage === 'inventory'          && <InventoryDashboard />}
             {activePage === 'customerManagement' && <CustomerManagement />}
-            {activePage === 'trialBalance' && <TrialBalance />}
-            {activePage === 'incomeStatement' && <IncomeStatement />}
-            {activePage === 'balanceSheet' && <BalanceSheet />}
-            {activePage === 'cashFlow' && <CashFlowStatement />}
-            {activePage === 'currency' && <CurrencyManagement />}
-          </div>
+            {activePage === 'trialBalance'       && <TrialBalance />}
+            {activePage === 'incomeStatement'    && <IncomeStatement />}
+            {activePage === 'balanceSheet'       && <BalanceSheet />}
+            {activePage === 'cashFlow'           && <CashFlowStatement />}
+            {activePage === 'currency'           && <CurrencyManagement />}
+          </main>
         </div>
+
       </div>
     </AppProvider>
   );

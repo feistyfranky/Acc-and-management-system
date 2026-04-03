@@ -86,20 +86,26 @@ const InventoryDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen p-2 sm:p-4 md:p-8 animate-fade-in text-slate-800">
+    <div className="min-h-screen animate-fade-in" style={{ color: '#cbd5e1' }}>
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-indigo-600 mb-2">Inventory Dashboard</h1>
-        <p className="text-slate-500 font-medium tracking-wide">Track paper, ink, and plates inventory with real-time alerts</p>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold mb-1" style={{ color: '#e2e8f0' }}>Inventory Dashboard</h1>
+        <p style={{ color: '#475569', fontSize: '0.875rem' }}>Track paper, ink, and plates inventory with real-time alerts</p>
       </div>
 
       {/* Critical Alert Banner */}
       {stats.criticalCount > 0 && (
-        <div className="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-4 shadow-sm">
-          <AlertTriangle size={24} className="text-rose-500 flex-shrink-0 mt-0.5" />
+        <div
+          className="mb-6 p-4 rounded-xl flex items-start gap-4 animate-pulse-glow"
+          style={{
+            background: 'rgba(239, 68, 68, 0.1)',
+            border: '1px solid rgba(239, 68, 68, 0.3)',
+          }}
+        >
+          <AlertTriangle size={20} style={{ color: '#f87171', flexShrink: 0, marginTop: '2px' }} />
           <div>
-            <p className="font-bold text-rose-800">Critical Stock Alert</p>
-            <p className="text-sm font-medium text-rose-600">
+            <p className="font-bold" style={{ color: '#fca5a5' }}>Critical Stock Alert</p>
+            <p className="text-sm font-medium" style={{ color: '#f87171' }}>
               {stats.criticalCount} item(s) are at critical stock levels and require immediate reordering
             </p>
           </div>
@@ -107,106 +113,97 @@ const InventoryDashboard = () => {
       )}
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 animate-fade-in-delayed">
-        <div className="glass-card p-6 border-b-4 border-b-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8 animate-fade-in-delayed">
+        <div className="stat-card blue">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Total Items</p>
-              <p className="text-3xl font-extrabold text-slate-800">{stats.totalItems}</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#64748b' }}>Total Items</p>
+              <p className="text-3xl font-extrabold" style={{ color: '#e2e8f0' }}>{stats.totalItems}</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500">
-              <Package size={24} />
+            <div className="stat-icon" style={{ background: 'rgba(99,102,241,0.2)' }}>
+              <Package size={22} style={{ color: '#818cf8' }} />
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 border-b-4 border-b-emerald-500">
+        <div className="stat-card green">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">In Stock</p>
-              <p className="text-3xl font-extrabold text-emerald-600">{stats.inStockCount}</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#64748b' }}>In Stock</p>
+              <p className="text-3xl font-extrabold" style={{ color: '#34d399' }}>{stats.inStockCount}</p>
             </div>
-            <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-500 text-xl font-bold">
-              ✓
+            <div className="stat-icon" style={{ background: 'rgba(16,185,129,0.2)' }}>
+              <span style={{ color: '#34d399', fontSize: '1.2rem', fontWeight: 800 }}>✓</span>
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 border-b-4 border-b-amber-500">
+        <div className="stat-card amber">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Low Stock</p>
-              <p className="text-3xl font-extrabold text-amber-600">{stats.lowStockCount}</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#64748b' }}>Low Stock</p>
+              <p className="text-3xl font-extrabold" style={{ color: '#fbbf24' }}>{stats.lowStockCount}</p>
             </div>
-            <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 text-xl font-bold">
-              ⚠
+            <div className="stat-icon" style={{ background: 'rgba(245,158,11,0.2)' }}>
+              <span style={{ color: '#fbbf24', fontSize: '1.2rem', fontWeight: 800 }}>⚠</span>
             </div>
           </div>
         </div>
 
-        <div className="glass-card p-6 border-b-4 border-b-rose-500">
+        <div className="stat-card red">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Critical</p>
-              <p className="text-3xl font-extrabold text-rose-600">{stats.criticalCount}</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#64748b' }}>Critical</p>
+              <p className="text-3xl font-extrabold" style={{ color: '#f87171' }}>{stats.criticalCount}</p>
             </div>
-            <div className="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500 text-xl font-bold">
-              ✕
+            <div className="stat-icon" style={{ background: 'rgba(239,68,68,0.2)' }}>
+              <span style={{ color: '#f87171', fontSize: '1.2rem', fontWeight: 800 }}>✕</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tab Filter and Search */}
-      <div className="glass-card p-6 mb-6 animate-fade-in-delayed-2">
-        <div className="flex flex-col md:flex-row gap-6 mb-4 items-start md:items-center justify-between">
-          {/* Tabs */}
-          <div className="flex gap-2 bg-white/50 p-1.5 rounded-xl border border-slate-200">
-            {['all', 'Paper', 'Ink', 'Plates'].map(tab => (
-              <button
-                key={tab}
-                onClick={() => { setActiveTab(tab); setSearchTerm(''); }}
-                className={`px-5 py-2.5 rounded-lg font-bold transition-all text-sm ${
-                  activeTab === tab
-                    ? 'bg-white shadow text-indigo-600 border border-slate-200'
-                    : 'text-slate-500 hover:text-slate-700 hover:bg-white/40 border border-transparent'
-                }`}
-              >
-                {tab === 'all' ? 'All Categories' : tab}
-              </button>
-            ))}
-          </div>
-
-          {/* Add Button */}
-          <button
-            onClick={() => {
-              setEditingItem(null);
-              setIsAddModalOpen(true);
-            }}
-            className="flex items-center gap-2 btn-premium px-6 py-2.5"
-          >
-            <Plus size={20} />
-            Add Item
-          </button>
+      {/* Filter + Search bar */}
+      <div className="glass-card p-3 mb-5 flex flex-wrap gap-3 items-center animate-fade-in-delayed-2">
+        {/* Tabs */}
+        <div className="flex gap-1 p-1 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          {['all', 'Paper', 'Ink', 'Plates'].map(tab => (
+            <button
+              key={tab}
+              onClick={() => { setActiveTab(tab); setSearchTerm(''); }}
+              className="px-3 py-1.5 rounded-md text-sm font-medium transition-all"
+              style={{
+                background: activeTab === tab ? 'rgba(99,102,241,0.2)' : 'transparent',
+                color: activeTab === tab ? '#a5b4fc' : '#64748b',
+              }}
+            >
+              {tab === 'all' ? 'All' : tab}
+            </button>
+          ))}
         </div>
 
         {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+        <div className="relative flex-1" style={{ minWidth: '180px' }}>
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={15} style={{ color: '#475569' }} />
           <input
             type="text"
-            placeholder="Search by item name, SKU, or supplier..."
+            placeholder="Search items, SKU, or supplier..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-slate-200 bg-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-700 transition-all"
+            className="form-input pl-9 pr-3 py-2 text-sm"
           />
         </div>
-      </div>
 
-      {/* Results Count */}
-      <div className="mb-4 text-sm text-slate-500 font-medium px-2">
-        Showing <span className="font-bold text-slate-700">{filteredItems.length}</span> of{' '}
-        <span className="font-bold text-slate-700">{items.length}</span> items
+        <span style={{ color: '#334155', fontSize: '0.75rem' }}>
+          <span style={{ color: '#64748b', fontWeight: 600 }}>{filteredItems.length}</span> / {items.length}
+        </span>
+
+        <button
+          onClick={() => { setEditingItem(null); setIsAddModalOpen(true); }}
+          className="btn-premium flex items-center gap-2 px-4 py-2 text-sm ml-auto"
+        >
+          <Plus size={15} /> Add Item
+        </button>
       </div>
 
       {/* Inventory Table */}
@@ -215,23 +212,18 @@ const InventoryDashboard = () => {
           <div className="overflow-x-auto">
             <InventoryTable
               items={filteredItems}
-              onEdit={(item) => {
-                setEditingItem(item);
-                setIsAddModalOpen(true);
-              }}
+              onEdit={(item) => { setEditingItem(item); setIsAddModalOpen(true); }}
               onDelete={handleDeleteItem}
-              getCategoryColor={getCategoryColor}
-              getStatusColor={getStatusColor}
             />
           </div>
         </div>
       ) : (
         <div className="glass-card p-12 text-center animate-fade-in-delayed-2">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Package size={40} className="text-slate-400" />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(255,255,255,0.05)' }}>
+            <Package size={32} style={{ color: '#334155' }} />
           </div>
-          <p className="text-slate-700 text-xl font-bold mb-2">No items found</p>
-          <p className="text-slate-500 font-medium">Try adjusting your search or filters</p>
+          <p className="font-semibold mb-1" style={{ color: '#64748b' }}>No items found</p>
+          <p style={{ color: '#334155', fontSize: '0.8125rem' }}>Try adjusting your search or filters</p>
         </div>
       )}
 

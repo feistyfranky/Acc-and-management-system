@@ -1,7 +1,19 @@
 import React from 'react';
 import { Trash2, Edit2 } from 'lucide-react';
 
-const InventoryTable = ({ items, onEdit, onDelete, getCategoryColor, getStatusColor }) => {
+const categoryStyle = (cat) => ({
+  Paper:  { background: 'rgba(99,102,241,0.08)',  color: '#a5b4fc', border: '1px solid rgba(99,102,241,0.18)' },
+  Ink:    { background: 'rgba(139,92,246,0.08)',  color: '#c4b5fd', border: '1px solid rgba(139,92,246,0.18)' },
+  Plates: { background: 'rgba(249,115,22,0.08)', color: '#fdba74', border: '1px solid rgba(249,115,22,0.18)' },
+}[cat] || { background: 'rgba(100,116,139,0.08)', color: '#94a3b8', border: '1px solid rgba(100,116,139,0.18)' });
+
+const statusStyle = (s) => ({
+  'In Stock':  { background: 'rgba(16,185,129,0.08)',  color: '#6ee7b7', border: '1px solid rgba(16,185,129,0.18)' },
+  'Low Stock': { background: 'rgba(245,158,11,0.08)',  color: '#fcd34d', border: '1px solid rgba(245,158,11,0.18)' },
+  Critical:    { background: 'rgba(239,68,68,0.08)',   color: '#fca5a5', border: '1px solid rgba(239,68,68,0.18)' },
+}[s] || { background: 'rgba(100,116,139,0.08)', color: '#94a3b8', border: '1px solid rgba(100,116,139,0.18)' });
+
+const InventoryTable = ({ items, onEdit, onDelete }) => {
   // Format currency
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-GH', {
@@ -41,62 +53,63 @@ const InventoryTable = ({ items, onEdit, onDelete, getCategoryColor, getStatusCo
             <tr key={item.id}>
               {/* Item Name */}
               <td>
-                <div>
-                  <p className="font-bold text-slate-800">{item.itemName}</p>
-                  <p className="text-xs text-slate-500 font-mono mt-0.5 whitespace-nowrap">{item.sku}</p>
-                </div>
+                <p style={{ color: '#cbd5e1', fontWeight: 600, fontSize: '0.875rem' }}>{item.itemName}</p>
+                <p style={{ color: '#475569', fontSize: '0.7rem', fontFamily: 'monospace', marginTop: '1px' }}>{item.sku}</p>
               </td>
 
               {/* Category */}
               <td>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getCategoryColor(item.category)}`}>
+                <span
+                  className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                  style={categoryStyle(item.category)}
+                >
                   {item.category}
                 </span>
               </td>
 
               {/* Quantity */}
               <td className="text-right">
-                <p className="text-sm font-bold text-slate-800">
-                  {item.quantity} <span className="text-xs text-slate-400 font-medium ml-1 uppercase">{item.unit}</span>
-                </p>
+                <span style={{ color: '#cbd5e1', fontWeight: 600, fontSize: '0.875rem' }}>{item.quantity}</span>
+                <span style={{ color: '#475569', fontSize: '0.7rem', marginLeft: '4px', textTransform: 'uppercase' }}>{item.unit}</span>
               </td>
 
               {/* Minimum Stock */}
               <td className="text-right">
-                <p className="text-sm font-medium text-slate-500">
-                  {item.minimumStock} <span className="text-xs text-slate-400 font-medium ml-1 uppercase">{item.unit}</span>
-                </p>
+                <span style={{ color: '#64748b', fontSize: '0.875rem' }}>{item.minimumStock}</span>
+                <span style={{ color: '#475569', fontSize: '0.7rem', marginLeft: '4px', textTransform: 'uppercase' }}>{item.unit}</span>
               </td>
 
               {/* Stock Level Bar */}
               <td className="align-middle">
-                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden shadow-inner">
+                <div className="w-full rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.07)', height: '4px' }}>
                   <div
-                    className={`h-full rounded-full transition-all duration-500 ${
-                      item.status === 'Critical'
-                        ? 'bg-gradient-to-r from-rose-500 to-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.4)]'
-                        : item.status === 'Low Stock'
-                        ? 'bg-gradient-to-r from-amber-500 to-amber-400'
-                        : 'bg-gradient-to-r from-emerald-500 to-emerald-400'
-                    }`}
-                    style={{ width: `${stockPercentage}%` }}
-                  ></div>
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{
+                      width: `${stockPercentage}%`,
+                      background: item.status === 'Critical' ? '#fca5a5'
+                        : item.status === 'Low Stock' ? '#fcd34d'
+                        : '#6ee7b7',
+                    }}
+                  />
                 </div>
               </td>
 
               {/* Unit Cost */}
-              <td className="text-right font-mono text-sm text-slate-500">
+              <td className="text-right font-mono" style={{ color: '#64748b', fontSize: '0.875rem' }}>
                 {formatCurrency(item.cost)}
               </td>
 
               {/* Total Value */}
-              <td className="text-right font-mono font-bold text-slate-800">
+              <td className="text-right font-mono" style={{ color: '#cbd5e1', fontWeight: 600, fontSize: '0.875rem' }}>
                 {formatCurrency(totalValue)}
               </td>
 
               {/* Status */}
               <td className="text-center">
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getStatusColor(item.status)}`}>
+                <span
+                  className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
+                  style={statusStyle(item.status)}
+                >
                   {item.status}
                 </span>
               </td>
@@ -106,17 +119,23 @@ const InventoryTable = ({ items, onEdit, onDelete, getCategoryColor, getStatusCo
                 <div className="flex gap-1 justify-end">
                   <button
                     onClick={() => onEdit(item)}
-                    className="text-indigo-600 hover:text-indigo-900 p-1.5 hover:bg-indigo-50 rounded-lg transition-colors"
-                    title="Edit item"
+                    className="p-1.5 rounded-lg transition-all"
+                    style={{ color: '#818cf8' }}
+                    onMouseEnter={e => { e.currentTarget.style.background='rgba(99,102,241,0.12)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; }}
+                    title="Edit"
                   >
-                    <Edit2 size={16} />
+                    <Edit2 size={15} />
                   </button>
                   <button
                     onClick={() => onDelete(item.id)}
-                    className="text-rose-500 hover:text-rose-700 p-1.5 hover:bg-rose-50 rounded-lg transition-colors"
-                    title="Delete item"
+                    className="p-1.5 rounded-lg transition-all"
+                    style={{ color: '#fca5a5' }}
+                    onMouseEnter={e => { e.currentTarget.style.background='rgba(239,68,68,0.12)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background='transparent'; }}
+                    title="Delete"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={15} />
                   </button>
                 </div>
               </td>
